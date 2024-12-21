@@ -38,10 +38,6 @@ export default function ChatProvider({ children }: PropsWithChildren) {
         return <ActivityIndicator />;
     }
 
-    // return () => {
-    //     client.disconnectUser();
-    //     setIsReady(false);
-    // };
     return (
         <OverlayProvider>
             <Chat client={client}>{children}</Chat>
