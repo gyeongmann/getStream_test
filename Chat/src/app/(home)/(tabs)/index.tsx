@@ -1,33 +1,31 @@
-import { router } from 'expo-router';
-import { useState } from 'react';
-import { Text } from 'react-native';
-import { Channel as ChannelType } from 'stream-chat';
-import {
-    Channel,
-    ChannelList,
-    MessageInput,
-    MessageList,
-} from 'stream-chat-expo';
+import { Link, router, Stack } from 'expo-router';
+import { ChannelList } from 'stream-chat-expo';
 import { useAuth } from '@/src/providers/AuthProvider';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { View } from 'react-native';
 
 export default function MainTabScreen() {
-    const [channel, setChannel] = useState<ChannelType>();
-
-    if (channel) {
-        return (
-            <Channel channel={channel}>
-                <MessageList />
-                <MessageInput />
-            </Channel>
-        );
-    }
-
     const { user } = useAuth();
-
     return (
-        <ChannelList
-            filters={{ members: { $in: [user?.id ?? null] } }}
-            onSelect={(channel) => router.push(`/channel/${channel.cid}`)}
-        />
+        <>
+            <Stack.Screen
+                options={{
+                    headerRight: () => (
+                        <Link href={'/(home)/users'} asChild>
+                            <AntDesign
+                                name="plus"
+                                size={24}
+                                color="gray"
+                                style={{ marginHorizontal: 15 }}
+                            />
+                        </Link>
+                    ),
+                }}
+            />
+            <ChannelList
+                filters={{ members: { $in: [user?.id ?? null] } }}
+                onSelect={(channel) => router.push(`/channel/${channel.cid}`)}
+            />
+        </>
     );
 }
