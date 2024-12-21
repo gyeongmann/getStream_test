@@ -1,9 +1,9 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-import { Redirect } from 'expo-router'
+import { Redirect } from 'expo-router';
 
 export default function HomeScreen() {
-    return <Redirect href={'/(home)/(tabs)'} />
+    return <Redirect href={'/(auth)/login'} />;
 }
 
 const styles = StyleSheet.create({
@@ -13,4 +13,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-})
+});
