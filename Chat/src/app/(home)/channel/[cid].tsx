@@ -20,7 +20,6 @@ export default function ChannelScreen() {
         const fetchChannel = async () => {
             const channels = await client.queryChannels({ cid });
             setChannel(channels[0]);
-            console.log(channels);
         };
 
         fetchChannel();

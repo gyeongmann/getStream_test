@@ -11,7 +11,6 @@ import {
 
 export default function MainTabScreen() {
     const [channel, setChannel] = useState<ChannelType>();
-    console.log(channel);
 
     if (channel) {
         return (
