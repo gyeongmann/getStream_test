@@ -8,6 +8,7 @@ import {
     MessageInput,
     MessageList,
 } from 'stream-chat-expo';
+import { useAuth } from '@/src/providers/AuthProvider';
 
 export default function MainTabScreen() {
     const [channel, setChannel] = useState<ChannelType>();
@@ -21,8 +22,11 @@ export default function MainTabScreen() {
         );
     }
 
+    const { user } = useAuth();
+
     return (
         <ChannelList
+            filters={{ members: { $in: [user?.id ?? null] } }}
             onSelect={(channel) => router.push(`/channel/${channel.cid}`)}
         />
     );
